@@ -36,7 +36,17 @@ namespace HkDia
 
         private void bLogin_Click(object sender, EventArgs e)
         {
+            FileStream fs = new FileStream("us.hkus", FileMode.OpenOrCreate, FileAccess.Read);
+            StreamReader read = new StreamReader(fs);
+            string name, pass;
 
+            while (!read.EndOfStream)
+            {
+                if (CodeEncode.encodeHeader(read.ReadLine(), false) == tName.Text)
+                {
+                    
+                }
+            }
         }
     }
 }

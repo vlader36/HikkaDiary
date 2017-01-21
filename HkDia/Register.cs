@@ -22,7 +22,8 @@ namespace HkDia
 
         private void bCreate_Click(object sender, EventArgs e)
         {
-            bool finded = false;
+            Base hikks = new Base();
+            hikks.readAtBase(hikks);
 
             if (tName.Text.Replace(" ","") == "")
             {
@@ -38,41 +39,16 @@ namespace HkDia
                 return;
             }
 
-            FileStream fsreadwrite = new FileStream("us.hkus", FileMode.OpenOrCreate, FileAccess.ReadWrite);
-            StreamReader strread = new StreamReader(fsreadwrite);
-
-            while (!strread.EndOfStream)
+            if (hikks.peoples.ContainsValue(tName.Text))
             {
-                if (tName.Text == CodeEncode.encodeHeader(strread.ReadLine(), false))
-                {
-                    finded = true;
-                    break;
-                }
-            }
-
-            strread.Close();
-            fsreadwrite.Close();
-
-            if (finded)
-            {
-                MessageBox.Show("Имя занято, ну");
+                MessageBox.Show("Имя уже заюзано");
                 return;
             }
 
             else
             {
-                strread.Close();
-                fsreadwrite = new FileStream("us.hkus", FileMode.Append, FileAccess.Write);
-                StreamWriter strw = new StreamWriter(fsreadwrite);
-                strw.Write(CodeEncode.encodeHeader(tName.Text, true) + '\n');
-                strw.Close();
-                fsreadwrite.Close();
-                fsreadwrite = new FileStream("pa.hkus", FileMode.Append, FileAccess.Write);
-                strw = new StreamWriter(fsreadwrite);
-                strw.Write(CodeEncode.encodeHeader(tPass.Text, true), +'\n');
-                strw.Close();
-                fsreadwrite.Close();
-                Directory.CreateDirectory(Directory.GetCurrentDirectory() + "/" + CodeEncode.encodeHeader(tName.Text, true));
+                hikks.addAt(CodeEncode.encodeHeader(tName.Text, true), CodeEncode.encodeHeader(tPass.Text, true));
+                hikks.writeToBase(hikks);
             }
         }
 
