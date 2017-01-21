@@ -36,16 +36,45 @@ namespace HkDia
 
         private void bLogin_Click(object sender, EventArgs e)
         {
-            FileStream fs = new FileStream("us.hkus", FileMode.OpenOrCreate, FileAccess.Read);
-            StreamReader read = new StreamReader(fs);
-            string name, pass;
+            Base hikks = new Base();
+            Base.readAtBase(ref hikks.peoples);
+            int key = -1;
 
-            while (!read.EndOfStream)
+            if (!hikks.peoples.ContainsKey(CodeEncode.encodeHeader(tName.Text, true)))
             {
-                if (CodeEncode.encodeHeader(read.ReadLine(), false) == tName.Text)
+                lStatus.Text = "Такого человека нету в моей базе";
+                lStatus.ForeColor = Color.Red;
+                lStatus.Location = new Point(this.Size.Width / 2 - lStatus.Size.Width / 2, 1);
+                return;
+            }
+
+            if (hikks.peoples.ContainsKey(CodeEncode.encodeHeader(tName.Text, true)))
+            {
+                for (int i = 0; i < hikks.peoples.Count; i++)
                 {
-                    
+                    if(hikks.peoples.ElementAt(i).Key == CodeEncode.encodeHeader(tName.Text, true))
+                    {
+                        key = i;
+                        break;
+                    }
                 }
+            }
+            if (key == -1)
+                return;
+
+            if (hikks.peoples.ElementAt(key).Value != (CodeEncode.encodeHeader(tPass.Text, true)))
+            {
+                lStatus.Text = "Неверный пароль";
+                lStatus.ForeColor = Color.Red;
+                lStatus.Location = new Point(this.Size.Width / 2 - lStatus.Size.Width / 2, 1);
+                return;
+            }
+
+            else
+            {
+                lStatus.Text = "Успешный вход";
+                lStatus.ForeColor = Color.Green;
+                lStatus.Location = new Point(this.Size.Width / 2 - lStatus.Size.Width / 2, 1);
             }
         }
     }

@@ -15,12 +15,12 @@ namespace HkDia
             peoples = new Dictionary<string, string>();
         }
 
-        public void addAt (string value, string key)
+        public void addAt (string name, string pass)
         {
-            this.peoples.Add(value, key);
+            this.peoples.Add(name, pass);
         }
 
-        public void readAtBase(Base same)
+        static public void readAtBase(ref Dictionary<string, string> same)
         {
             BinaryFormatter formatter = new BinaryFormatter();
 
@@ -30,18 +30,16 @@ namespace HkDia
                 {
                     return;
                 }
-                same = (Base)formatter.Deserialize(fs);
+                same = (Dictionary<string, string>)formatter.Deserialize(fs);
             }
         }
 
-        public void writeToBase(Base same)
+        static public void writeToBase(Base same)
         {
             BinaryFormatter formatter = new BinaryFormatter();
-
-            using (FileStream fs = new FileStream("hks.hk", FileMode.Append, FileAccess.Write))
-            {
-                formatter.Serialize(fs, same);
-            }
+            FileStream fs = new FileStream("hks.hk", FileMode.Truncate, FileAccess.Write);
+            formatter.Serialize(fs, same.peoples);
+            fs.Close();
         }
     }
 }

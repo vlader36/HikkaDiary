@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.tName = new System.Windows.Forms.TextBox();
-            this.lCome = new System.Windows.Forms.Label();
+            this.lStatus = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tPass = new System.Windows.Forms.TextBox();
@@ -46,15 +46,15 @@
             this.tName.Size = new System.Drawing.Size(631, 28);
             this.tName.TabIndex = 0;
             // 
-            // lCome
+            // lStatus
             // 
-            this.lCome.AutoSize = true;
-            this.lCome.Font = new System.Drawing.Font("Segoe Script", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lCome.Location = new System.Drawing.Point(235, 9);
-            this.lCome.Name = "lCome";
-            this.lCome.Size = new System.Drawing.Size(344, 58);
-            this.lCome.TabIndex = 1;
-            this.lCome.Text = "Ты снова тут...";
+            this.lStatus.AutoSize = true;
+            this.lStatus.Font = new System.Drawing.Font("Segoe Script", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lStatus.Location = new System.Drawing.Point(235, 9);
+            this.lStatus.Name = "lStatus";
+            this.lStatus.Size = new System.Drawing.Size(344, 58);
+            this.lStatus.TabIndex = 1;
+            this.lStatus.Text = "Ты снова тут...";
             // 
             // label1
             // 
@@ -127,7 +127,7 @@
             this.Controls.Add(this.bClose);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.lCome);
+            this.Controls.Add(this.lStatus);
             this.Controls.Add(this.tPass);
             this.Controls.Add(this.tName);
             this.Name = "Form1";
@@ -141,7 +141,7 @@
         #endregion
 
         private System.Windows.Forms.TextBox tName;
-        private System.Windows.Forms.Label lCome;
+        private System.Windows.Forms.Label lStatus;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tPass;

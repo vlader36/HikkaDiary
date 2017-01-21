@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.lStatus = new System.Windows.Forms.Label();
             this.lName = new System.Windows.Forms.Label();
             this.lPass = new System.Windows.Forms.Label();
             this.lPassRepeat = new System.Windows.Forms.Label();
@@ -39,15 +39,15 @@
             this.bCreate = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // label1
+            // lStatus
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe Script", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(119, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(298, 42);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Добро пожаловать";
+            this.lStatus.AutoSize = true;
+            this.lStatus.Font = new System.Drawing.Font("Segoe Script", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lStatus.Location = new System.Drawing.Point(149, 9);
+            this.lStatus.Name = "lStatus";
+            this.lStatus.Size = new System.Drawing.Size(298, 42);
+            this.lStatus.TabIndex = 0;
+            this.lStatus.Text = "Добро пожаловать";
             // 
             // lName
             // 
@@ -138,7 +138,7 @@
             this.Controls.Add(this.lPassRepeat);
             this.Controls.Add(this.lPass);
             this.Controls.Add(this.lName);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lStatus);
             this.Name = "Register";
             this.Text = "Register";
             this.ResumeLayout(false);
@@ -148,7 +148,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lStatus;
         private System.Windows.Forms.Label lName;
         private System.Windows.Forms.Label lPass;
         private System.Windows.Forms.Label lPassRepeat;

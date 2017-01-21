@@ -18,37 +18,53 @@ namespace HkDia
             InitializeComponent();
             tPassRepeat.PasswordChar = '*';
             tPass.PasswordChar = '*';
+            lStatus.Location = new Point(this.Size.Width / 2 - lStatus.Size.Width / 2, 1);
         }
 
         private void bCreate_Click(object sender, EventArgs e)
         {
             Base hikks = new Base();
-            hikks.readAtBase(hikks);
+            Base.readAtBase(ref hikks.peoples);
 
             if (tName.Text.Replace(" ","") == "")
             {
-                MessageBox.Show("Имя не может быть пустым!");
+                lStatus.Text = "Имя не может быть пустым!";
+                lStatus.ForeColor = Color.Red;
+                lStatus.Location = new Point(this.Size.Width / 2 - lStatus.Size.Width / 2, 1);
                 return;
             }
 
             if (tPass.Text != tPassRepeat.Text)
             {
-                MessageBox.Show("Пароли не совпадают");
+                lStatus.Text = "Пароли не совпадают";
+                lStatus.Location = new Point(this.Size.Width / 2 - lStatus.Size.Width / 2, 1);
+                lStatus.ForeColor = Color.Red;
                 lPass.ForeColor = Color.Red;
                 lPassRepeat.ForeColor = Color.Red;
                 return;
             }
-
-            if (hikks.peoples.ContainsValue(tName.Text))
+            else
             {
-                MessageBox.Show("Имя уже заюзано");
-                return;
+                lPass.ForeColor = Color.Black;
+                lPassRepeat.ForeColor = Color.Black;
+            }
+
+            if (hikks.peoples.ContainsKey(CodeEncode.encodeHeader(tName.Text, true)))
+            {
+                lStatus.Text = "Имя пользователя уже заюзано";
+                lStatus.Location = new Point(this.Size.Width / 2 - lStatus.Size.Width / 2, 1);
+                lStatus.ForeColor = Color.Red;
+                return;         
             }
 
             else
             {
+                lStatus.Text = "Ты успешно добавлен в базу";
+                lStatus.ForeColor = Color.Green;
+                lStatus.Location = new Point(this.Size.Width / 2 - lStatus.Size.Width / 2, 1);
+                Directory.CreateDirectory(Directory.GetCurrentDirectory() + "/" + hikks.peoples.Count);
                 hikks.addAt(CodeEncode.encodeHeader(tName.Text, true), CodeEncode.encodeHeader(tPass.Text, true));
-                hikks.writeToBase(hikks);
+                Base.writeToBase(hikks);
             }
         }
 
