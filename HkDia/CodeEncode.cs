@@ -49,10 +49,5 @@ namespace HkDia
             }
             #endregion
         }
-
-        public void nothing()
-        {
-            return;
-        }
     }
 }
